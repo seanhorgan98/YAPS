@@ -14,6 +14,9 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,6 +29,12 @@ SECRET_KEY = '6lp57x+s6e$qw7gd7b9luac#4su$t&$@+c(rm(=q6o^j8319q2'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+# media files
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
+
 
 
 # Application definition
@@ -54,7 +63,7 @@ ROOT_URLCONF = 'yaps_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -117,4 +127,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATICFILES_DIRS = [STATIC_DIR,]
+
 STATIC_URL = '/static/'
+
+LOGIN_URL = '/YAPS/login/'
+
