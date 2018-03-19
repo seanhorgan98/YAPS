@@ -1,5 +1,5 @@
 from django.contrib import admin
-from YAPS.models import Category, UserProfile
+from YAPS.models import Category, Page, UserProfile, Comment, User, Podcast, Episode
 
 
 class PageAdmin(admin.ModelAdmin):
@@ -12,7 +12,12 @@ class CategoryAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Category, CategoryAdmin)
-##admin.site.register(Page, PageAdmin)
+admin.site.register(Page, PageAdmin)
 admin.site.register(UserProfile)
+admin.site.register(User)
+admin.site.register(Comment)
+admin.site.register(Podcast)
+admin.site.register(Episode)
+
 
 

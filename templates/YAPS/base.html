@@ -1,43 +1,179 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+    
+    {% load staticfiles %}
+  <head>
+    <!-- Required meta tags -->
+      
+    
+      {% block title %}<title> YAPS</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap CSS 
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link  href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+              <link  href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
-{% load staticfiles %}
-{% load YAPS_template_tags %}
+      
+  </head>
+  <body>
+      
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+        <div class = "container-fluid">
+            <a class="navbar-brand" href="#">YAPS</a>
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">&#9776;</button>
+          <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+          <ul class="nav navbar-nav">
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Categories</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Whats-New</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Most-Popular</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Community</a></li>
 
- <html>
-	<head>
+        
+          </ul>
+          <ul class="nav navbar-nav flex-row justify-content-between m1-auto">
+              <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+              <li class="dropdown order-1">
+                  <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login<span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right mt-1">
+                      <li class="p-3">
+                          <form class="form" role="form">
+                              <div class="form-group">
+                                  <input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
+                              
+                              </div>
+                              <div class="form-group">
+                                  <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
 
-		<title>
-			YAPS -
-			{% block title_block %}
-				Yet Another Podcast System!
-			{% endblock %}
-		</title>
-	</head>
-	<body>
-		<div>
-		{% block body_block %}
-		{% endblock %}
-		</div>
-		<div>
-			{% block sidebar_block %}
-				{% get_category_list category %}
-			{% endblock %}
+                              </div>
+                              <div class="form-group">
+                                  <button type="submit" class="btn btn-primary btn-block">Login</button>
+                              </div>
+                              <div class="form-group text-xs-centre">
+                                  <small><a href="#">Forgot Password?</a></small>
+                              </div>
+
+                          </form>
+                      </li>
+
+          </ul>
+              
         </div>
-		<hr />
-		<div>
-			<ul>
-				
-				{% if user.is_authenticated %}
+      </nav>
+      <div><h1><img src="{% static 'images/yapshead.jpg' %}">
+          </h1>
+         <div class="card-group">
+  <div class="card">
+    <img class="card-img-top" src="{% static 'images/pic.jpg' %}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text"> text</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Text.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Text.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+          <div class="card-group">
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Text.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Text.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Text.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+          <div class="card-group">
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Text.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Text.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">text.</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
+      
+      
+      </div>
+      
 
-					<li><a href="{% url 'restricted' %}">Restricted Page</a></li>
-					<li><a href="{% url 'logout' %}">Logout</a></li>
-				{% else %}
-					<li><a href="{% url 'login' %}">Sign In</a></li>
-					<li><a href="{% url 'register' %}">Sign Up</a></li>
-				{% endif %}
-					<li><a href="{% url 'about' %}">About</a></li>
-					<li><a href="{% url 'index' %}">Index</a></li>
-			</ul>
-		</div>
-	</body>
- </html>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
+    <script src="http://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"> </script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

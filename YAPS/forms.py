@@ -1,5 +1,5 @@
 from django import forms
-from YAPS.models import Category, UserProfile
+from YAPS.models import Category,Page, UserProfile
 from django.contrib.auth.models import User
 
 
