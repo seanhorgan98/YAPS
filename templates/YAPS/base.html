@@ -18,6 +18,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <link  href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'YAPS/style.css' %}"/>
 
 
       <!-- For using Font Awesome icons -->
@@ -41,33 +42,28 @@
 
         
           </ul>
-          <ul class="nav navbar-nav flex-row justify-content-between m1-auto">
+              <div>
+               <form class="navbar-form navbar-right" role="search" method="get" action="{% url 'index' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+              </div>
+          <ul class="navbar-nav m1-auto">
               <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
-              <ul class="dropdown order-1">
-                  <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login<span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right mt-1">
-                      <li class="p-3">
-                          <form class="form" role="form">
-                              <div class="form-group">
-                                  <input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
-                              
-                              </div>
-                              <div class="form-group">
-                                  <input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
-
-                              </div>
-                              <div class="form-group">
-                                  <button type="submit" class="btn btn-primary btn-block">Login</button>
-                              </div>
-                              <div class="form-group text-xs-centre">
-                                  <small><a href="#">Forgot Password?</a></small>
-                              </div>
-
-                          </form>
-                      </li>
-
-                  </ul>
-              </ul>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav m1-auto">
+                <li class="{% block register_active %}{% endblock %}"><a href="{% url 'register' %}">Register</a></li>
+                
+                <li class="{% block login_active %}{% endblock %}" ><a href="{% url 'login_user' %}">Log In</a></li>
+            </ul>
+                 <li>
+                    <a href="{% url 'logout_user' %}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                    </a>
+                </li>
+        </div>
           </ul>
           </div>
         </div>
