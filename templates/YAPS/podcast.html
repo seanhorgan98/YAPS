@@ -1,0 +1,28 @@
+{% extends 'YAPS/base.html' %}
+
+{% load staticfiles %} 
+{% block title %}
+    <title>Radiolab (replace me with dynamic title)</title>
+{% endblock %}
+
+{% block body_block %}
+
+
+<div class="container">
+  <div class="row">
+    <div class="span2">
+      <img src="{{ MEDIA_URL }}Radiolab.png"  alt="" class="img-rounded">
+    </div>
+    <div class="span4">
+      <blockquote>
+        <p>Radiolab</p>
+        <small><cite title="Source Title">WNYC  <i class="icon-map-marker"></i></cite></small>
+      </blockquote>
+      <p>
+        <i class="fas fa-home"></i> www.radiolab.org <br>
+        <i class="fas fa-clock"></i> January 1, 2001 <br>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

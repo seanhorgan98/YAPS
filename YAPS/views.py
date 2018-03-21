@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from YAPS.models import Podcast
 
 
 def index(request):
@@ -8,4 +9,14 @@ def index(request):
 
     return response
 
+def podcast(request):
 
+    context_dict = {}
+
+
+
+
+
+    response = render(request, 'YAPS/podcast.html')
+
+    return response
