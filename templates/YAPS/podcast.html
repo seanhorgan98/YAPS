@@ -7,22 +7,54 @@
 
 {% block body_block %}
 
+<style>
+.profileimg {
+    position:relative;
+}
+
+.stars {
+    position:absolute;
+    left:50px;
+    }
+
+</style>
+
 
 <div class="container">
   <div class="row">
-    <div class="span2">
-      <img src="{{ MEDIA_URL }}Radiolab.png"  alt="" class="img-rounded">
+    <div class="col-md-3">
+        <div class="profileimg">
+            <img src="{{ MEDIA_URL }}Radiolab.png"  alt="" class="img-rounded">
+            <div class="stars">
+                <span class="fa fa-star fa-2x checked" style="color:orange"></span>
+                <span class="fa fa-star fa-2x checked" style="color:orange"></span>
+                <span class="fa fa-star fa-2x checked" style="color:orange"></span>
+                <span class="fa fa-star fa-2x checked" style="color:orange"></span>
+                <span class="fa fa-star fa-2x"></span>
+            </div>
+        </div>
     </div>
-    <div class="span4">
+
+    <div class="col-md-3">
       <blockquote>
         <p>Radiolab</p>
-        <small><cite title="Source Title">WNYC  <i class="icon-map-marker"></i></cite></small>
+        <small><cite title="Source Title">WNYC<i class="icon-map-marker"></i></cite></small>
       </blockquote>
       <p>
-        <i class="fas fa-home"></i> www.radiolab.org <br>
-        <i class="fas fa-clock"></i> January 1, 2001 <br>
+        <i class="fas fa-home fa-2x"></i>  &emsp; www.radiolab.org <br>
+        <i class="fas fa-clock fa-2x"></i>&emsp; ~20-60 mins <br>
+        <i class="fas fa-rss fa-2x"></i>&emsp; RSS Link <br>
+        <i class="fas fa-dot-circle fa-2x"></i>&emsp; Science <br>
+
       </p>
     </div>
+
+    <div class="col-md-6">
+        <p class="text-justify font-weight-bold font-italic" style="font-size:200%">
+            Radiolab is a show about curiosity. Where sound illuminates ideas, and the boundaries blur between science, philosophy, and human experience.
+        </p>
+    </div>
+
   </div>
 </div>
 {% endblock %}
