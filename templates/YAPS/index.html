@@ -7,41 +7,22 @@
 {% endblock %}
 
 {% block body_block %}
-      <div><h1><img src="{% static 'images/yapshead.jpg' %}">
-          </h1>
-         <div class="card-group">
-  <div class="card">
-    <img class="card-img-top" src="{% static 'images/pic.jpg' %}" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text"> text</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Text.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Text.</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
-    </div>
-  </div>
-</div>
-          <div class="card-group">
+
+{% if user.is_authenticated %}
+   <p><strong> Welcome Back {{ user.username }}</strong></p>
+{% else %}
+    <p><strong>Login Or Register For An Account.</strong></p>
+
+{% endif %}
+    <div>
+               <img src="{% static 'images/yaps.jpg' %}" style="float:left;width:33%;height:33%;">    
+    
+                <div>
+                    <img src="{% static 'images/pics.jpg' %}" style="float:left;width:20%;height:20%;">
+            </div>
+</div><br>
+
+<div class="card-group">
   <div class="card">
     <img class="card-img-top" src="..." alt="Card image cap">
     <div class="card-body">
@@ -107,7 +88,6 @@
 </div>
 
 
-      </div>
 {% endblock %}
 
 

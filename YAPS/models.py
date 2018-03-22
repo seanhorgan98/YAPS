@@ -39,6 +39,7 @@ class Podcast(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=Category.max_val)
     slug = models.SlugField(blank=True)
+    audio_file = models.FileField(upload_to='episode')
 
     publish_date = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=300, blank=True)

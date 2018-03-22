@@ -1,17 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from YAPS.models import Podcast
-from YAPS.forms import UserForm,UserProfile
+from YAPS.forms import UserForm,UserProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-
+from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-   
-    response = render(request, 'YAPS/index.html')
+    
 
-    return response
+    return render(request, 'YAPS/index.html')
+
+    
 
 def podcast(request):
 
@@ -36,36 +38,52 @@ def logout_user(request):
 
 def login_user(request):
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(username=username, password=password)
-        if user is not None:
+        if user :
             if user.is_active:
                 login(request, user)
-                pods = Podcast.objects.filter(user=request.user)
-                return render(request, 'YAPS/index.html', {'pods': pods})
+                return HttpResponseRedirect(reverse('index'))
             else:
                 return render(request, 'YAPS/login.html', {'error_message': 'Your account has been disabled'})
         else:
-            return render(request, 'YAPS/login.html', {'error_message': 'Invalid login'})
-    return render(request, 'YAPS/login.html')
+            print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponse("Invalid login details supplied.")
+    else:
+        return render(request, 'YAPS/login.html', {})
+
+    
+@login_required
+def restricted(request):
+        return HttpResponse("Since you're logged in, you can see this text!")       
 
 
 def register(request):
-    form = UserForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        username = form.cleaned_data['username']
-        password = form.cleaned_data['password']
-        user.set_password(password)
-        user.save()
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                pods = Podcast.objects.filter(user=request.user)
-                return render(request, 'YAPS/index.html', {'pods': pods})
-    context = {
-        "form": form,
-    }
-    return render(request, 'YAPS/register.html', context)
+        registered = False
+        if request.method == 'POST':
+            user_form = UserForm(data=request.POST)
+            profile_form = UserProfileForm(data=request.POST)
+            if user_form.is_valid() and profile_form.is_valid():
+               user = user_form.save()
+               user.set_password(user.password)
+               user.save()
+               profile = profile_form.save(commit=False)
+               profile.user = user
+               if 'picture' in request.FILES:
+                   profile.picture = request.FILES['picture']
+               profile.save()
+               registered = True
+            else:
+                print(user_form.errors, profile_form.errors)
+        else:
+            user_form = UserForm()
+            profile_form = UserProfileForm()
+        return render(request,'YAPS/register.html',{'user_form': user_form, 'profile_form': profile_form,'registered': registered})
+
+        
+        
+            
+                
+                
+    
