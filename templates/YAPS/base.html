@@ -34,7 +34,6 @@
             <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">&#9776;</button>
           <div class="collapse navbar-collapse" id="exCollapsingNavbar">
           <ul class="nav navbar-nav">
-            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Categories</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Whats-New</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Most-Popular</a></li>
@@ -43,26 +42,25 @@
         
           </ul>
               <div>
-               <form class="navbar-form navbar-right" role="search" method="get" action="{% url 'index' %}">
+               <form class="navbar-form navbar-centre" role="search" method="get" action="{% url 'index' %}">
                 <div class="form-group">
                     <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
+                
+                    <button type="submit" class="btn btn-default" >Search</button>
+                   
+                   </div>
             </form>
               </div>
           <ul class="navbar-nav m1-auto">
               <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav m1-auto">
-                <li class="{% block register_active %}{% endblock %}"><a href="{% url 'register' %}">Register</a></li>
+                <li class="{% block register_active %}{% endblock %}"><a href="{% url 'register' %}" class="nav-link">Register</a></li>
                 
-                <li class="{% block login_active %}{% endblock %}" ><a href="{% url 'login_user' %}">Log In</a></li>
-            </ul>
-                 <li>
-                    <a href="{% url 'logout_user' %}">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
-                    </a>
-                </li>
+                <li class="{% block login_active %}{% endblock %}" ><a href="{% url 'login_user' %}" class="nav-link">Log In</a></li>
+            
+                 <li> <a href="{% url 'logout_user' %}" class="nav-link" aria-hidden="true">&nbsp;Logout</a></li>
+                </ul>
         </div>
           </ul>
           </div>
