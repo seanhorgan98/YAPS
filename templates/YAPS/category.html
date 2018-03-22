@@ -1,0 +1,32 @@
+
+{% extends 'YAPS/base.html' %}
+
+{% load staticfiles %} 
+{% block title %}
+    <title>{{ category.name }}</title>
+{% endblock %}
+
+{% block body_block %}
+      <div><h1>{{ category.name }}</h1>
+         <div class="card-group">
+  {% if podcasts %}
+      {% for podcast in podcasts %}
+      <div class="card">
+        <img class="card-img-top" src="{% static 'images/{{ category.name }}.jpg' %}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ podcast.title }}</h5>
+          <p class="card-text"> text</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+   {% endif %}
+</div>
+
+
+
+      </div>
+{% endblock %}
+
+

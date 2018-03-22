@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from YAPS.models import Podcast
+from YAPS.models import Podcast, Category
 from YAPS.forms import UserForm,UserProfile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
@@ -8,10 +8,19 @@ from django.contrib.auth import logout
 
 
 def index(request):
-   
-    response = render(request, 'YAPS/index.html')
 
-    return response
+    context_dict = {}
+
+    try:
+        all_categories = Category.objects.all()
+        context_dict["categories"] = all_categories
+
+    except Category.DoesNotExist:
+        context_dict['categories'] = None
+
+
+
+    return render(request, 'YAPS/index.html', context_dict)
 
 def podcast(request):
 
@@ -24,6 +33,22 @@ def podcast(request):
     response = render(request, 'YAPS/podcast.html')
 
     return response
+
+def show_category(request, category_name_slug):
+    context_dict = {}
+
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+        podcasts = Podcast.objects.filter(category=category)
+
+        context_dict['podcasts'] = podcasts
+        context_dict['category'] = category
+
+    except Category.DoesNotExist:
+        context_dict['category'] = None
+        context_dict['podcasts'] = None
+
+    return  render(request, 'YAPS/category.html', context_dict)
 
 def logout_user(request):
     logout(request)
