@@ -39,11 +39,13 @@ class Podcast(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=Category.max_val)
     slug = models.SlugField(blank=True)
+    audio_file = models.FileField(upload_to='episode', blank=True, null=True)
 
-    publish_date = models.DateTimeField(auto_now_add=True)
+    publish_date = models.DateField(auto_now_add=True)
     author = models.CharField(max_length=300, blank=True)
-    url = models.URLField()
+    url = models.URLField(default='')
     description = models.CharField(max_length=max_vals)
+    image = models.ImageField(upload_to='podcasts', null=True, blank=True, default='podcasts/default.png')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -52,12 +54,14 @@ class Podcast(models.Model):
     def __str__(self):
         return self.title
 
+
+
 class Episode(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(blank=True)
     description = models.TextField(blank=True)
     show_notes = models.TextField(blank=True)
-    audio_file = models.FileField(upload_to='episode')
+    audio_file = models.FileField(upload_to='episode', blank=True, null=True)
     duration = models.FloatField(blank=True)
     publish_date = models.DateTimeField(auto_now_add=True)
 

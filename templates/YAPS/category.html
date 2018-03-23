@@ -8,20 +8,27 @@
 
 {% block body_block %}
       <div><h1>{{ category.name }}</h1>
-         <div class="card-group">
+          <a href="/YAPS/category/{{category.slug}}/add_podcast/">Add Podcast</a>
+         <div class="card-columns">
   {% if podcasts %}
       {% for podcast in podcasts %}
       <div class="card">
-        <img class="card-img-top" src="{% static 'images/{{ category.name }}.jpg' %}" alt="Card image cap">
+          <!-- this line allows the entire card to become a link -->
+        <a href="/YAPS/category/{{category.slug}}/{{podcast.slug}}" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%;"></a>
+        <img class="card-img-top img-fluid" src="{{podcast.image.url}}" alt="podcast img">
         <div class="card-body">
           <h5 class="card-title">{{ podcast.title }}</h5>
-          <p class="card-text"> text</p>
+          <p class="card-text"></p>
         </div>
         <div class="card-footer">
           <small class="text-muted">Last updated 3 mins ago</small>
         </div>
       </div>
-   {% endif %}
+      {% endfor %}
+  {% else %}
+             There are no podcasts.
+
+  {% endif %}
 </div>
 
 
