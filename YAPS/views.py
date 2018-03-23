@@ -7,11 +7,12 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-
+from datetime import datetime
 
 def index(request):
-
     context_dict = {}
+
+    visitor_cookie_handler(request)
 
     try:
         all_categories = Category.objects.all()
@@ -20,9 +21,7 @@ def index(request):
     except Category.DoesNotExist:
         context_dict['categories'] = None
 
-
-
-    return render(request, 'YAPS/index.html', context_dict)
+    return render(request, 'YAPS/index.html')
 
 def add_podcast(request, category_name_slug):
 
@@ -46,15 +45,12 @@ def add_podcast(request, category_name_slug):
 
     context_dict = {'form': form, 'category': category}
     return render(request, 'YAPS/add_podcast.html', context_dict)
-    #return render(request, '', context_dict)
-
 
 def show_podcast(request, category_name_slug, podcast_name_slug):
-
-    context_dict = {}
-
     podcast = Podcast.objects.get(slug=podcast_name_slug)
+    context_dict = {}
     context_dict['podcast'] = podcast
+
 
 
     response = render(request, 'YAPS/podcast.html', context_dict)
@@ -103,10 +99,10 @@ def login_user(request):
     else:
         return render(request, 'YAPS/login.html', {})
 
-
+    
 @login_required
 def restricted(request):
-        return HttpResponse("Since you're logged in, you can see this text!")
+        return HttpResponse("Since you're logged in, you can see this text!")       
 
 
 def register(request):
@@ -133,7 +129,26 @@ def register(request):
 
 
 
+def get_server_side_cookie(request, cookie, default_val=None):
+    val = request.session.get(cookie)
+    if not val:
+        val = default_val
+    return val
 
 
 
+def visitor_cookie_handler(request):
+    visits = int(get_server_side_cookie(request, 'visits', '1'))
+    last_visit_cookie = get_server_side_cookie(request,'last_visit', str(datetime.now()))
+    last_visit_time = datetime.strptime(last_visit_cookie[:-7],'%Y-%m-%d %H:%M:%S')
+    if (datetime.now() - last_visit_time).days > 0:
+        visits = visits + 1
+        request.session['last_visit'] = str(datetime.now())
+    else:
+        visits = 1
+        request.session['last_visit'] = last_visit_cookie
+    request.session['visits'] = visits
 
+
+                
+    
