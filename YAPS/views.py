@@ -148,6 +148,11 @@ def visitor_cookie_handler(request):
         visits = 1
         request.session['last_visit'] = last_visit_cookie
     request.session['visits'] = visits
+    
+    
+def profile(request):
+    registered = True
+    return render(request, 'YAPS/profile.html', {})   
 
 
                 
