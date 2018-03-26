@@ -1,7 +1,5 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.contrib.auth.models import User
-
 
 # Create your models here.
 
@@ -46,24 +44,11 @@ class Podcast(models.Model):
     url = models.URLField(default='')
     description = models.CharField(max_length=max_vals)
     image = models.ImageField(upload_to='podcasts', null=True, blank=True, default='podcasts/default.png')
-
+    is_favourite = models.BooleanField(default=False)
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Podcast, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.title
-
-
-
-class Episode(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(blank=True)
-    description = models.TextField(blank=True)
-    show_notes = models.TextField(blank=True)
-    audio_file = models.FileField(upload_to='episode', blank=True, null=True)
-    duration = models.FloatField(blank=True)
-    publish_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
@@ -74,7 +59,6 @@ class User(models.Model):
     password = models.CharField(max_length=300)
     email = models.EmailField()
     twitter = models.CharField(max_length=150)
-    home_url = models.URLField()
     bio = models.TextField()
     last_login = models.DateTimeField(auto_now_add=True)
 
@@ -95,12 +79,15 @@ class Comment(models.Model):
 
     
 
+    
+
+
+
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User Model instance.
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # The additional attributes we wish to include
-    website = models.URLField(blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
     # Override the  __unicode__() method to return out something meaningful!
