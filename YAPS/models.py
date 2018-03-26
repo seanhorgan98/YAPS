@@ -1,6 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User as BaseUser
 from django.db.models.signals import post_save
 
 
@@ -74,11 +74,11 @@ class User(models.Model):
     user_name = models.CharField(max_length=300)
     password = models.CharField(max_length=300)
     email = models.EmailField()
-    twitter = models.CharField(max_length=150)
-    home_url = models.URLField()
-    bio = models.TextField()
+    twitter = models.CharField(max_length=150, blank=True)
+    home_url = models.URLField(blank=True)
+    bio = models.TextField(blank=True)
     last_login = models.DateTimeField(auto_now_add=True)
-
+    
 
     def __str__(self):
             return self.user_name
@@ -98,8 +98,8 @@ class Comment(models.Model):
 
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User Model instance.
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
+    user = models.OneToOneField(BaseUser, on_delete=models.CASCADE)
+    
     # The additional attributes we wish to include
     website = models.URLField(blank=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
@@ -107,10 +107,11 @@ class UserProfile(models.Model):
     # Override the  __unicode__() method to return out something meaningful!
     # Remember if you use Python 2.7.x, define __unicode__ too!
     def __str__(self):
-        return self.user.username
+        return self.user.user_name
 
 def create_profile(sender, **kwargs):
     if kwargs['created']:
-        user_profile = UserProfile.objects.create(user=kwargs['isntance'])
+        user_profile = UserProfile.objects.create(user=kwargs['instance'])
+        user_profile.save()
         
 post_save.connect(create_profile, sender = User)

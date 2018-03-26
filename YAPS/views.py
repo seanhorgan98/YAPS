@@ -8,6 +8,7 @@ from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.template import RequestContext
 
 def index(request):
     context_dict = {}
@@ -95,7 +96,7 @@ def login_user(request):
                 return render(request, 'YAPS/login.html', {'error_message': 'Your account has been disabled'})
         else:
             print("Invalid login details: {0}, {1}".format(username, password))
-            return HttpResponse("Invalid login details supplied.")
+            return render(request, 'YAPS/login.html', {'error_message': 'Invalid login details'})
     else:
         return render(request, 'YAPS/login.html', {})
 
