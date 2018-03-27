@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from YAPS.forms import UserForm, UserProfileForm, UserProfile, PodcastForm, MyRegistrationForm
+from YAPS.forms import UserForm, UserProfileForm, UserProfile, PodcastForm, MyRegistrationForm, contactForm
 from django.http import HttpResponse
 from YAPS.models import Podcast,Category,User,UserProfile,Comment 
 from django.contrib.auth import authenticate, login
@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.contrib import auth
+from django.core.mail import send_mail, BadHeaderError
 
 from django.template import RequestContext
 
@@ -160,6 +161,24 @@ def profile(request):
 
 def about(request):
     return render(request, 'YAPS/about.html', {})
+
+def contact(request):
+    
+    if request.method == 'GET':
+        form = contactForm()
+    else:
+        form = contactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(name, message, email, ['seanhorgan98@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            
+    
+    return render(request, 'YAPS/contact.html', {'form': form})
 
 
                 
