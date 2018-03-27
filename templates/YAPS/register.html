@@ -10,15 +10,18 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h3>Register for an Account</h3>
-                    {% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
+                     {% if registered %}
+                        <strong>thank you for registering!</strong>
+                        <a href="{% url 'index' %}">Return to the homepage.</a><br />
+                     {% else %}
+                         <strong>register here!</strong><br />
+                    
                     <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         
-                        {{ user_form.as_p }}
+                          {{ user_form.as_p }}
+                          {{ profile_form.as_p }}
                         
-                        {{ profile_form.as_p }}                        
                         
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
@@ -26,6 +29,7 @@
                             </div>
                         </div>
                     </form>
+                    {% endif %}
                 </div>
                 <div class="panel-footer">
                     Already have an account? <a href="{% url 'login_user' %}">Click here</a> to log in.
