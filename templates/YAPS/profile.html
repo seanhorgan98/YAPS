@@ -1,0 +1,26 @@
+{% extends 'YAPS/base.html' %}
+
+
+{% load staticfiles %} 
+{% block title %}<title>Profile</title>{% endblock %}
+
+{% block body_block %}
+
+    {% if user.is_authenticated %}
+        <p><strong> Welcome Back {{ user.username }}</strong></p>
+    {% else %}
+        <p><strong>Login Or Register For An Account.</strong></p>
+
+    {% endif %}
+
+    
+    <!-- UserName, Email, Picture -->
+    <div> 
+        <h1> {{ user.username }}</h1>
+        <h2> {{ user.email }}</h2>
+        <h2> {{ user.last_login }}</h2>
+        <img scr=" {{ userprofile.picture }}" width = "240">
+    </div>
+
+
+{% endblock %}

@@ -58,9 +58,10 @@
                 {% if user.is_authenticated %}
                    
                     <li> <a href="{% url 'logout_user' %}" class="nav-link" aria-hidden="true">&nbsp;Logout</a></li>
+                    <li> <a href="{% url 'profile' %}" class="nav-link" aria-hidden="true">&nbsp;Profile</a></li>
                 {% else %}
                     <li class="{% block register_active %}{% endblock %}"><a href="{% url 'register' %}" class="nav-link">Register</a></li>
-                
+                    
                     <li class="{% block login_active %}{% endblock %}" ><a href="{% url 'login_user' %}" class="nav-link">Log In</a></li>
                 {% endif %}
                  
