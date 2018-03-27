@@ -46,7 +46,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles','YAPS',
+    'star_ratings',
+    'threadedcomments',
+    'django_comments',
+    'django.contrib.sites',
+    'disqus',
 ]
+
+DISQUS_API_KEY = 'PSZWUnRWatB08na4dfzwyikiw3v2nlNWSA0mkoq6g072OzwBLiB6Rdf6sWVz5quR'
+DISQUS_WEBSITE_SHORTNAME = 'yaps-1'
+
+SITE_ID = 1
+
+COMMENTS_APP = 'threadedcomments'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

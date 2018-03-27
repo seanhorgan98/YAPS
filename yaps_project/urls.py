@@ -26,4 +26,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^YAPS/', include('YAPS.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+    url(r'^articles/comments/', include('django_comments.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

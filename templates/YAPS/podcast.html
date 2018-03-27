@@ -1,8 +1,15 @@
 {% extends 'YAPS/base.html' %}
 
-{% load staticfiles %} 
+{% load staticfiles %}
+{% load ratings %}
+{% load threadedcomments_tags %}
+{% load disqus_tags %}
+{% disqus_dev %}
+
 {% block title %}
-    <title>Radiolab (replace me with dynamic title)</title>
+    <title>{{ podcast.title }}</title>
+    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
@@ -13,7 +20,7 @@
 }
 
 .stars {
-    position:absolute;
+    position:relative;
     left:50px;
     }
 
@@ -26,11 +33,7 @@
         <div class="profileimg">
             <img src="{{podcast.image.url}}"  alt="" class="img-rounded">
             <div class="stars">
-                <span class="fa fa-star fa-2x checked" style="color:orange"></span>
-                <span class="fa fa-star fa-2x checked" style="color:orange"></span>
-                <span class="fa fa-star fa-2x checked" style="color:orange"></span>
-                <span class="fa fa-star fa-2x checked" style="color:orange"></span>
-                <span class="fa fa-star fa-2x"></span>
+                {% ratings podcast %}
             </div>
         </div>
     </div>
@@ -55,6 +58,16 @@
         </p>
     </div>
 
+      <br><br><br>
+
   </div>
+</div>
+
+<div class="container">
+    <h2>Comments for {{ podcast.title }}:</h2>
+
+
+
+    {% disqus_show_comments %}
 </div>
 {% endblock %}
