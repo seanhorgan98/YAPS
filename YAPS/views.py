@@ -155,7 +155,11 @@ def visitor_cookie_handler(request):
     
 def profile(request):
     registered = True
-    return render(request, 'YAPS/profile.html', {})   
+    return render(request, 'YAPS/profile.html', {}) 
+
+
+def about(request):
+    return render(request, 'YAPS/about.html', {})
 
 
                 

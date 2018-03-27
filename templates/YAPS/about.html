@@ -1,0 +1,23 @@
+{% extends 'YAPS/base.html' %}
+{% load staticfiles %} 
+
+{% block title %}
+    <title>About YAPS</title>
+{% endblock %}
+
+{% block body_block %}
+
+    <img src="{% static 'images/yaps.jpg' %}" style="float:right;width:40%;height:70%;">
+
+    <div class="col-sm-12 col-md-6">
+        <h1>About YAPS</h1>
+        <p>YAPS (Yet Another Podcast Site) is a website dedicated to creating a community which allows
+            users to create, listen and enjoy podcasts of any genre. A goal of ours is to let users browse new or old podcasts with the ability to save/favourite or to rate and comment on podcasts they really like or really dislike.</p>
+        
+        <br>
+        <br>
+        
+        <p>Our team consists of Andrew, Jim, Jeff and Sean.</p>
+    </div>
+
+{% endblock %}
