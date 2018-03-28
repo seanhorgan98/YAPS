@@ -26,6 +26,29 @@
                     <img src="{% static 'images/pics.jpg' %}" style="float:right;width:30%;height:25%;">
             </div>
 </div><br>
+
+<div class="card-group">
+    {% if top3PodcastsDict %}
+        {% for podcast in top3PodcastsDict %}
+      <div class="card">
+              <!-- this line allows the entire card to become a link -->
+        <a href="/YAPS/category/{{category.slug}}/{{podcast.slug}}" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%;"></a>
+        <img class="card-img-top" style="max-height:56%;max-width:100%;" src="{{podcast.image.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ podcast.title }}</h5>
+          <p class="card-text"></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"></small>
+        </div>
+      </div>
+        {% endfor %}
+        {% else %}
+            No categories present.
+        {% endif %}
+
+  </div>
+</div>
              
 
 

@@ -35,6 +35,7 @@ class Page(models.Model):
     url = models.URLField()
     views = models.IntegerField(default=0)
 
+
     def __str__(self):
         return self.title
 
@@ -57,7 +58,9 @@ class Podcast(models.Model):
 
     is_favourite = models.BooleanField(default=False)
 
-    
+    views = models.IntegerField(default=0)
+
+
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

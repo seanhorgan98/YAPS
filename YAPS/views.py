@@ -18,10 +18,14 @@ from django.shortcuts import get_object_or_404
 
 
 def index(request):
-    podcast_list=Podcast.objects.all().order_by('publish_date')
+    #podcast_list=Podcast.objects.all().order_by('publish_date')
+    top3Podcasts = Podcast.objects.order_by('-views')[:3]
     visitor_cookie_handler(request)
 
-    return render(request, 'YAPS/index.html', {'podcast_list': podcast_list})
+    top3PodcastsDict = {'top3Podcasts': top3Podcasts}
+
+
+    return render(request, 'YAPS/index.html', top3PodcastsDict)
 
 
 def category(request):
@@ -76,7 +80,7 @@ def show_category(request, category_name_slug):
         context_dict['category'] = None
         context_dict['podcasts'] = None
 
-    return  render(request, 'YAPS/category.html', context_dict)
+    return  render(request, 'YAPS/show_category.html', context_dict)
 
 def logout_user(request):
     logout(request)

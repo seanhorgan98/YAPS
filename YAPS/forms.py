@@ -29,7 +29,7 @@ class PodcastForm(forms.ModelForm):
 
     class Meta:
         model = Podcast
-        exclude = ('category','slug')
+        exclude = ('category','slug', 'duration_mins,', 'RSS_feed', 'is_favourite', 'views')
 
 
 
