@@ -21,7 +21,7 @@
         <h3>Email:</h3><h5> {{ user.email }}</h5>
             <h3>Last Time You Were Here:</h3><h5> {{ user.last_login }}</h5><br>
         <div>
-        <img scr=" {{ user.userprofile.picture }}" width = "240">
+        <img scr="{{MEDIA_URL}}{{ userprofile.picture.url }}" width = "240">
 </div>
     </div>
 

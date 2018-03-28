@@ -6,11 +6,7 @@
     <title>Categories</title>
 {% endblock %}
 
- <div>
-               <img src="{% static 'images/rss.jpg' %}" style="float:right;width:70%;height:70%;">
-
-                <div>
-
+ 
 {% block body_block %}
       <div><h1>{{ category.name }}</h1>
           {% if user.is_authenticated %}
@@ -18,7 +14,10 @@
           {% else %}
           {% endif %}
         
-          
+          <div>
+               <img src="{% static 'images/rss.jpg' %}"style="float:centre;width:25%;height:25%;">
+
+                <div>
          <div class="card-columns">
   {% if podcasts %}
       {% for podcast in podcasts %}
@@ -69,7 +68,7 @@
   </div>
   <div class="card">
           <!-- this line allows the entire card to become a link -->
-    <a href="/YAPS/category/sport" style="position: absolute; top: 0; left: 0; height: 70%; width: 70%;"></a>
+    <a href="/YAPS/category/sport" style="position: absolute; top: 0; right: 0; height: 50%; width: 50%;"></a>
     <img class="card-img-top"  style="max-height:100%;max-width:100%;" src="{% static 'images/sport.jpg' %}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">Sports</h5>
@@ -82,7 +81,7 @@
 </div>
   <div class="card">
           <!-- this line allows the entire card to become a link -->
-    <a href="/YAPS/category/comedy" style="position: absolute; top: 0; left: 0; height: 70%; width: 70%;"></a>
+    <a href="/YAPS/category/comedy" style="position: absolute; top: 0; left: 0; height: 50%; width: 50%;"></a>
     <img class="card-img-top" style="max-height:100%;max-width:100%;" src="{% static 'images/comedy.jpg' %}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">Comedy</h5>
