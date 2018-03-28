@@ -1,22 +1,19 @@
-table th {
-    line-height: 5px;
-    min-height: 5px;
-    height: 5px;
-    font-weight: normal;
+
+
+/* index */
+.index-header-centered {
+    text-align: center;
+    padding-bottom: 15px;
 }
-table td {
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+.index-intro-info {
+    margin: 30px auto;
+    font-size: 14px;
+    font-style: normal;
 }
-.jquery_validation_form label.error, span.error, td.django-form-errors {
+.index-host-info {
+    margin-top: 30px;
     font-size: 11px;
     font-style: normal;
-    color: red;
-    padding-left: 0px;
+    max-width: 600px;
 }
-.game-player-table {
-    font-size: 14px;
-}
-.game-player-link {
-    cursor: pointer;
-}
+
