@@ -10,22 +10,18 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.contrib import auth
 from django.core.mail import send_mail, BadHeaderError
-
 from django.template import RequestContext
+import os
+from YAPS.models import Podcast
+from django.shortcuts import get_object_or_404
+
+
 
 def index(request):
-    context_dict = {}
-
+    podcast_list=Podcast.objects.all().order_by('publish_date')
     visitor_cookie_handler(request)
 
-    try:
-        all_categories = Category.objects.all()
-        context_dict["categories"] = all_categories
-
-    except Category.DoesNotExist:
-        context_dict['categories'] = None
-
-    return render(request, 'YAPS/index.html')
+    return render(request, 'YAPS/index.html', {'podcast_list': podcast_list})
 
 def add_podcast(request, category_name_slug):
 

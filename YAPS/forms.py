@@ -57,7 +57,7 @@ class MyRegistrationForm(UserCreationForm):
         return user
 
 
-
+        
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
