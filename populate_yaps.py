@@ -15,7 +15,7 @@ def populate():
 
     sport_podcasts = [
         {"title": "The euro league football show",
-         "publish_date":"26/03/2018",
+         #"publish_date":"26/03/2018",
          "url":"https://www.bbc.co.uk/programmes/p062f3yc",
          "duration_mins":"46",
          "RSS_feed":"http://podcasts.files.bbci.co.uk/b0940sk5.rss",
@@ -23,7 +23,7 @@ def populate():
          "description":"How are the top teams shaping up ahead of the World Cup? Euro Leagues Football Show The team discuss how the likes of Germany, Spain and France are preparing for theWorld Cup and also talk about the rumours surrounding Thomas Tuchel and Arsenal"
                         },
         {"title":"Rugby union weekly",
-        "publish_date":"26/03/2018",
+        #"publish_date":"26/03/2018",
         "url":"https://www.bbc.co.uk/programmes/p062dtx3",
         "duration_mins":"61",
         "RSS_feed":"http://podcasts.files.bbci.co.uk/p04q5p2n.rss",
@@ -31,7 +31,7 @@ def populate():
         "description":"Jamie Heaslip and the suede boot drop-goal .Rugby Union Weekly Ugo and Chris speak to Ireland legend Jamie Heaslip about missing out on the grand slam, his ten trips to Las Vegas and why he loves working with Stuart Lancaster. Ugo is keen to mention his London stadium drop goal, but there are serious issues to discuss after Nick Kennedy is “forced out” of London Irish and Chris is “forced in” to a London museum."
          },
         {"title":"radio hibs. the final whistle st johnstone",
-         "publish_date":"16/03/2018",
+         #"publish_date":"16/03/2018",
          "url":"https://player.fm/series/radio-hibs",
         "duration_mins":"37",
          "RSS_feed":"http://podcasts.files.bbci.co.uk/p04q5p2n.rss",
@@ -41,7 +41,7 @@ def populate():
 
     comedy_podcasts = [
         {"title":"Rhod gilberts best bits: the ant festival",
-        "publish_date":"24/03/2018",
+        #"publish_date":"24/03/2018",
         "url":"https://www.bbc.co.uk/programmes/p0626pc0",
         "duration_mins":"34",
         "RSS_feed":"http://podcasts.files.bbci.co.uk/p02nrsrr.rss",
@@ -49,7 +49,7 @@ def populate():
         "description":"Rhod and Ed Gamble argue over pears while Sian Harries imagines an insect music festival."
          },
         {"title":"No Pressure To Be Funny:",
-        "publish_date":"28/06/2015",
+        #"publish_date":"28/06/2015",
         "url":"https://www.comedy.co.uk/podcasts/no_pressure_to_be_funny/28_06_2015/",
         "duration_mins":"98",
         "RSS_feed":"http://feeds.feedburner.com/NoPressureToBeFunny",
@@ -57,7 +57,7 @@ def populate():
         "description":"This month, Omid Djalili, Sajeela Kershi, Chris Neill and Jake Yapp discuss, amongst other things, rock festivals, royalty, torture, peaceful protest, women's football and The Comedy Godfather, Barry Cryer. Masterful musical sets from Ronnie Golden, and hosted by Nick Revell."
           },
         {"title":"The Now Show - Series 52 Episode 4",
-         "publish_date":"23/06/2018",
+         #"publish_date":"23/06/2018",
          "url":"https://www.bbc.co.uk/programmes/p0623tzj",
         "duration_mins":"30",
          "RSS_feed":"http://podcasts.files.bbci.co.uk/p02pc9pj.rss",
@@ -68,7 +68,7 @@ def populate():
     drama_podcasts = [
          {
           "title":"the archers",
-          "publish_date":"11/06/2018",
+          #"publish_date":"11/06/2018",
           "url":"https://www.bbc.co.uk/programmes/b09tyzh2",
           "duration_mins":"75",
           "RSS_feed":"http://podcasts.files.bbci.co.uk/b006qnkc.rss",
@@ -77,7 +77,7 @@ def populate():
           },
           {
            "title":"The Unforgiven Episode 5",
-           "publish_date":"09/06/2018",
+           #"publish_date":"09/06/2018",
            "url":"https://www.bbc.co.uk/programmes/p060j886",
            "duration_mins":"45",
            "RSS_feed":"http://podcasts.files.bbci.co.uk/p06080gh.rss",
@@ -86,7 +86,7 @@ def populate():
                 },
           {
            "title":"The war horse Episode 10",
-           "publish_date":"25/06/2018",
+           #"publish_date":"25/06/2018",
            "url":"https://www.bbc.co.uk/programmes/p04rs4j3",
            "duration_mins":"16",
            "RSS_feed":"http://podcasts.files.bbci.co.uk/p04rs0qr.rss",
@@ -97,7 +97,7 @@ def populate():
     music_podcasts = [
          {
         "title":"A-Z of punk:",
-        "publish_date":"20/10/2017",
+        #"publish_date":"20/10/2017",
         "url":"https://www.bbc.co.uk/programmes/p05kggss",
         "duration_mins":"18",
         "RSS_feed":"http://podcasts.files.bbci.co.uk/p05k8003.rss",
@@ -106,7 +106,7 @@ def populate():
          },
         {
         "title":"The JogTunes Indie Podcast",
-        "publish_date":"01/03/2018",
+        #"publish_date":"01/03/2018",
         "url":"https://player.fm/series/the-jogtunes-indie-podcast/ep-150-37-min-146-165-light-and-easy",
         "duration_mins":"37",
         "RSS_feed":"http://feeds.feedburner.com/jogtunesindie",
@@ -115,7 +115,7 @@ def populate():
          },
          {
         "title":"Scotland introducing",
-        "publish_date":"23/03/2018",
+        #"publish_date":"23/03/2018",
         "url":"https://www.bbc.co.uk/programmes/p061zkdl",
         "duration_mins":"13",
         "RSS_feed":"http://podcasts.files.bbci.co.uk/p02nrw8p.rss",
@@ -127,7 +127,7 @@ def populate():
         "Comedy": {"podcasts": comedy_podcasts, },
         "Drama": {"podcasts": drama_podcasts, },
         "Music": {"podcasts": music_podcasts, }
-}
+    }
         
 
 # add them to the dictionaries above.
@@ -140,20 +140,20 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat)
         for p in cat_data["podcasts"]:
-            add_podcast(c, p["title"],p["publish_date"],p["url"],p["duration"], p["RSS_feed"], p["category"],p["description"])
+            add_podcast(c, p["title"],p["url"],p["duration_mins"], p["RSS_feed"], p["category"],p["description"])
 
     # Print out the categories we have added.
     for c in Category.objects.all():
-        for p in Page.objects.filter(category=c):
+        for p in Podcast.objects.filter(category=c):
             print("- {0} - {1}".format(str(c), str(p)))
 
-def add_podcast(cat, title, publish_date, url, duration, RSS_feed, category, description):
+def add_podcast(cat, title, url, duration, RSS_feed, category, description):
     p = Podcast.objects.get_or_create(category=cat, title=title)[0]
-    p.publish_date=publish_date
+    #p.publish_date=publish_date
     p.url=url
-    p.duration=duration
+    p.duration_mins=duration
     p.RSS_feed=RSS_feed
-    p.category=category
+    #p.category=category
     p.description=description
     p.save()
     return p

@@ -22,14 +22,14 @@ class PodcastForm(forms.ModelForm):
 
     title = forms.CharField(max_length=Podcast.max_vals, help_text="Name")
     author = forms.CharField(max_length=Podcast.max_vals, help_text="Author")
-    publish_date = forms.DateField(help_text="Publish Date")
+    #publish_date = forms.DateField(help_text="Publish Date", required=False)
     url = forms.URLField(help_text="Homepage URL")
     description = forms.CharField(max_length=Podcast.max_vals, help_text="Description")
-    image = forms.ImageField(help_text="Podcast Image")
+    image = forms.ImageField(help_text="Podcast Image", required=False)
 
     class Meta:
         model = Podcast
-        exclude = ('category','slug','audio_file')
+        exclude = ('category','slug')
 
 
 

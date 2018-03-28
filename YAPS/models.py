@@ -48,9 +48,9 @@ class Podcast(models.Model):
 
     #audio_file = models.FileField(upload_to='episode', blank=True, null=True)
 
-    publish_date = models.DateField(auto_now_add=True)
+    #publish_date = models.DateField(auto_now_add=True)
     url = models.URLField(default='')
-    duration_mins = models.DurationField(timedelta(int(seconds=0)))
+    duration_mins = models.IntegerField(default=0)
     RSS_feed = models.URLField(default='')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     description = models.CharField(max_length=max_vals)
