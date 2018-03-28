@@ -2,7 +2,6 @@
 
 {% load staticfiles %}
 {% load ratings %}
-{% load threadedcomments_tags %}
 {% load disqus_tags %}
 {% disqus_dev %}
 
@@ -44,9 +43,9 @@
         <small><cite title="Source Title">{{ podcast.author }}<i class="icon-map-marker"></i></cite></small>
       </blockquote>
       <p>
-        <i class="fas fa-home fa-2x"></i>  &emsp; {{ podcast.url }} <br>
-        <i class="fas fa-clock fa-2x"></i>&emsp; ~20-60 mins <br>
-          <i class="fas fa-rss fa-2x"></i>&emsp; <a href="">RSS Link</a> <br>
+        <i class="fas fa-home fa-2x"></i>  &emsp;<a href="{{ podcast.url }}">Homepage</a> <br>
+        <i class="fas fa-clock fa-2x"></i>&emsp; ~{{podcast.duration_mins}} mins <br>
+          <i class="fas fa-rss fa-2x"></i>&emsp; <a href="{{podcast.RSS_feed}}">RSS Feed Link</a> <br>
         <i class="fas fa-dot-circle fa-2x"></i>&emsp; <a href="{% url 'show_category' podcast.category.slug %}"{{podcast.category}}>{{podcast.category}}</a> <br>
 
       </p>
@@ -65,8 +64,6 @@
 
 <div class="container">
     <h2>Comments for {{ podcast.title }}:</h2>
-
-
 
     {% disqus_show_comments %}
 </div>
