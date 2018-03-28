@@ -1,0 +1,19 @@
+
+
+/* index */
+.index-header-centered {
+    text-align: center;
+    padding-bottom: 15px;
+}
+.index-intro-info {
+    margin: 30px auto;
+    font-size: 14px;
+    font-style: normal;
+}
+.index-host-info {
+    margin-top: 30px;
+    font-size: 11px;
+    font-style: normal;
+    max-width: 600px;
+}
+
