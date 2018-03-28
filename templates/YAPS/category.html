@@ -8,7 +8,10 @@
 
 {% block body_block %}
       <div><h1>{{ category.name }}</h1>
+          {% if user.is_authenticated %}
           <a href="/YAPS/category/{{category.slug}}/add_podcast/">Add Podcast</a>
+          {% else %}
+          {% endif %}
          <div class="card-columns">
   {% if podcasts %}
       {% for podcast in podcasts %}
