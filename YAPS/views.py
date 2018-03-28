@@ -23,6 +23,10 @@ def index(request):
 
     return render(request, 'YAPS/index.html', {'podcast_list': podcast_list})
 
+
+def category(request):
+    
+    return render(request, 'YAPS/category.html', {})
 def add_podcast(request, category_name_slug):
 
     try:
