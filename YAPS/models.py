@@ -2,6 +2,10 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User as BaseUser
 from django.db.models.signals import post_save
+from django.core.validators import *
+import django.db.models.deletion
+from datetime import timedelta
+
 
 
 
@@ -38,17 +42,22 @@ class Page(models.Model):
 
 class Podcast(models.Model):
     max_vals = 1000
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='podcasts', null=True, blank=True, default='podcasts/default.png')
     title = models.CharField(max_length=Category.max_val)
     slug = models.SlugField(blank=True)
-    audio_file = models.FileField(upload_to='episode', blank=True, null=True)
+
+    #audio_file = models.FileField(upload_to='episode', blank=True, null=True)
 
     publish_date = models.DateField(auto_now_add=True)
-    author = models.CharField(max_length=300, blank=True)
     url = models.URLField(default='')
+    duration_mins = models.DurationField(timedelta(int(seconds=0)))
+    RSS_feed = models.URLField(default='')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     description = models.CharField(max_length=max_vals)
-    image = models.ImageField(upload_to='podcasts', null=True, blank=True, default='podcasts/default.png')
+
     is_favourite = models.BooleanField(default=False)
+
+    
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -58,19 +67,21 @@ class Podcast(models.Model):
         return self.title
 
 
+ 
+
+        
 class User(models.Model):
     user_name = models.CharField(max_length=300)
     password = models.CharField(max_length=300)
     email = models.EmailField()
     twitter = models.CharField(max_length=150, blank=True)
-    home_url = models.URLField(blank=True)
     bio = models.TextField(blank=True)
     last_login = models.DateTimeField(auto_now_add=True)
     
 
     def __str__(self):
             return self.user_name
-
+    
     
 
 class Comment(models.Model):
